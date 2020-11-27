@@ -15,7 +15,7 @@ int main(){
 
     }
     popDataAsCure(&cure,&count);
-    if(head = NULL ){
+    if(head == NULL ){
         printf("All patients get the cure,%d cure left\n",cure);
     }
     else{

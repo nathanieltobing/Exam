@@ -45,16 +45,22 @@ void insertNode(Data biodata,int *count) {
 
 void popDataAsCure(int *value,int *count){
     
-    
-    while(head && *value > 0){
-        Node *newHead = head->next;
-        head->next = newHead->prev = NULL;
+    if(head == tail){
         free(head);
-        head = newHead;
-        *value = *value - 1;
-        *count = *count - 1;
+        
     }
+    else{
+
+        while(head){
+            Node *newHead = head->next;
+            head->next = newHead->prev = NULL;
+            free(head);
+            head = newHead;
+            *value = *value - 1;
+            *count = *count - 1;
+        }
   
+    }
     
 
 }
