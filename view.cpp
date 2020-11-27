@@ -21,8 +21,12 @@ int main(){
     else{
         printf("Need %d more cure\n",count);
     }
+    
+    if(head){
     printAll();
     popAllData();
+    }
+   
 
 
     return 0;

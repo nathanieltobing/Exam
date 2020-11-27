@@ -47,17 +47,30 @@ void popDataAsCure(int *value,int *count){
     
     if(head == tail){
         free(head);
+        head = NULL;
+        *value = *value - 1;
+        *count = *count - 1;
         
     }
     else{
 
-        while(head){
-            Node *newHead = head->next;
-            head->next = newHead->prev = NULL;
-            free(head);
-            head = newHead;
-            *value = *value - 1;
-            *count = *count - 1;
+        while(head && *value > 0){
+            if(head == tail){
+                free(head);
+                head = NULL;
+                *value = *value - 1;
+                *count = *count - 1;
+            }
+            else{
+
+                Node *newHead = head->next;
+                head->next = newHead->prev = NULL;
+                free(head);
+                head = newHead;
+                *value = *value - 1;
+                *count = *count - 1;
+                // printf("Hello");
+            }
         }
   
     }
@@ -66,16 +79,31 @@ void popDataAsCure(int *value,int *count){
 }
 
 void popAllData(){
-    while(head){
-        Node *newHead = head->next;
-        head->next = newHead->prev = NULL;
+    if(head == tail){
         free(head);
-        head = newHead;
+        head = NULL;
+    }
+
+    while(head){
+        if(head == tail){
+            free(head);
+            head = NULL;
+        }
+        else{
+            Node *newHead = head->next;
+            head->next = newHead->prev = NULL;
+            free(head);
+            head = newHead;
+
+        }
     }
 }
 
 void printAll(){
     curr = head;
+    if(!head){
+        return;
+    }
     while(curr){
         printf("%d %s %d - %s\n",curr->biodata.day,curr->biodata.month,curr->biodata.year,curr->biodata.name);
         curr= curr->next;
